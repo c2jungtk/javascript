@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p id="question">가위바위보로 몬스터 물리치기</p>
+    <p id="ans"></p>
+    <script>
+        var env = {
+            com: {point: 30},
+            me: {point: 30}
+        }
+        
+        // scissors = 0; 가위
+        // rock = 1; 바위
+        // paper = 2; 보
+        var var1 = 0, var2 = 0;
+
+        function fnGaBaBo(para1, para2){
+            var resArr = [];
+            if (para1 === 0) {
+                if (para2 === 1) {
+                    // com.point -= 2;
+                    resArr.push('com')
+                    resArr.push(2);
+                } else if (para2 === 2) {
+                    // me.point -= 1;
+                    resArr.push('me')
+                    resArr.push(1);
+                }
+            } else if (para1 === 1) {
+                if (para2 === 0) {
+                    resArr.push('me')
+                    resArr.push(2)
+                } else if (para2 === 2 ){
+                    resArr.push('com');
+                    resArr.push(1);
+                }
+            } else if (para1 === 2) {
+                if (para2 === 0) {
+                    resArr.push('com');
+                    resArr.push(2);
+                } else if (para2 === 1) {
+                    resArr.push('me');
+                    resArr.push(3);
+                }
+            }
+            return resArr;
+        }
+        fnGaBaBo(0,1);
+    
+    </script>
+</body>
+</html>

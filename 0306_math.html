@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p id="question">1부터 100까지의 숫자 맞추기</p>
+    <p id="ans"></p>
+    <script>
+        var que = document.getElementById("question").textContent;
+        var M = Math.floor(Math.random()*100)+1;
+        var myans = window.prompt(que);
+        var res = false;
+        
+        function RandomGame() {
+            var ans = number()
+
+        if (Number(myans) < M ) {
+            
+            ans.textContent = "입력 값 보다 작습니다."
+            var res = false;
+        } else if (Number(myans) > M) {
+
+            ans.textContent = "입력 값 보다 큽니다." 
+            var res = false;
+        } else {
+            ans.textContent = "정답입니다";
+            var res = true;
+        }  
+    }
+
+
+    while(res) {
+        RandomGame()
+    }
+
+    
+
+    </script>
+
+
+
+</body>
+</html>

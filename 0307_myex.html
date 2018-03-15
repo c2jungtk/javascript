@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p id="ans"></p>
+    <p id="ans2"></p>
+
+    <script>
+    
+        var userChoice = prompt("가위 바위 보?");
+        var computerChoice = Math.random();
+        if (computerChoice < 0.34) {
+            computerChoice = "바위";
+        } else if(computerChoice <= 0.67) {
+            computerChoice = "보";
+        } else {
+            computerChoice = "가위";
+        }
+        
+        var compare = function(choice1, choice2) {
+            if(choice1 === choice2) {
+            return "무승부";
+        }
+        if(choice1 === "바위") {
+            if(choice2 === "가위") {
+                return "바위 wins";
+            } else {
+                return "보 wins";
+            }
+        }
+        if(choice1 === "보") {
+            if(choice2 === "바위") {
+                return "보r wins";
+            } else {
+                if(choice2 === "가위") {
+                    return "가위 wins";
+            }
+        }
+        if(choice1 === "가위") {
+            if(choice2 === "바위") {
+                return "바위 wins";
+            } else {
+                if(choice2 === "보") {
+                    return "가위 wins";
+                }
+            }
+        }
+        }
+        };
+        var anser = document.getElementById("ans").textContent;
+        ans.textContent = "User Choice: " + userChoice;
+        var anser2 = document.getElementById("ans2").textContent;
+        ans2.textContent = "Computer Choice: " + computerChoice; 
+        // console.log("User Choice: " + userChoice);
+        // console.log("Computer Choice: " + computerChoice);
+        compare(userChoice, computerChoice);
+      
+
+
+
+
+
+
+    </script>
+</body>
+</html>

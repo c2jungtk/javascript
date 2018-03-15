@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>가위 바위 보</h1>
+    <p>컴퓨터와 가위 바위 보 게임 시작 ! 양쪽의 포인트는 10점으로 시작, 질 경우 포인트가 줄고, 준비가 되면 버튼을 눌러주세요.</p>
+    <button type="button" onclick="myenv.play()" >시작</button>
+    <p id="showLog"></p>
+    <!-- 가위바위보
+    - 컴퓨터 사용자와 진행
+    - 기본 점수는 10
+    - 무엇에 지는가에 따라 실점이 다르다.
+      > 가위 : -1 
+      > 바위 : -2
+      > 보   : -3    
+    -->
+    <script>
+        // 초기값
+        var myenv = {
+            elem: document.getElementById("showLog"),
+            // 0 = 가위, 1 = 바위, 2 = 보
+            ggb: ['가위', '바위', '보'],
+            play: function () {
+                while(com.point > 0 && me.point > 0) {
+                    playGaBaBo();
+                };
+                this.elem.textContent = this.matchLog;
+            },
+            matchLog: ""
+        };
+
+        // 컴, 사용자 객체
+        var com = { 
+            point: 10,
+            randNo: function() {
+                var getVal = Math.floor(Math.random()*3);
+                return [getVal,myenv.ggb[getVal]];
+            }                   
+        };
+        var me = {
+            point: 10,
+            randNo: function() {
+                var getVal = window.prompt("0: 가위, 1: 바위, 2: 보")
+                getVal = Number(getVal)
+                return [getVal,myenv.ggb[getVal]];
+            }       
+         };
+
+        // function random() {
+        //     return Math.floor(Math.random()*3);
+        // }
+
+
+        // 가위바위보 eatchGaBaBo함수, 패자와 감점을 return
+
+        function matchGaBaBo(para1, para2) {
+            var res = [];
+            // 경우의 수 비교
+            if (para1 === 0) {
+                if (para2 === 1) {
+                    // para1 패
+                    res.push('com');
+                    res.push(2);
+                } else if (para2 === 2) {
+                    res.push('me');
+                    res.push(1);
+                }
+            } else if (para1 === 1) {
+                if (para2 === 0) {
+                    res.push('me');
+                    res.push(2)
+                } else if (para2 === 2) {
+                    res.push('com');
+                    res.push(3);
+                }
+            } else if (para1 === 2) {
+                if (para2 === 0) {
+                    res.push('com');
+                    res.push(1);
+                } else if (para2 === 1) {
+                    res.push('me');
+                    res.push(3);
+                }
+            }
+            return res;
+        }
+
+
+        // 게임관리 eatchGaBaBo에서 패자와 감점을 return. (한쪽이 0점이 되면 종료)
+
+        function playGaBaBo() {
+            var curLog = "";
+            // 컴이 값을 내는 것
+            var comVal = com.randNo();
+            // 사용자가 값을 내는 것
+            var meVal = me.randNo();
+            // 매칭 결과(ex:['com',2])를 가져와서 패자의 point값을 뺀다.
+            var matchRes = matchGaBaBo(comVal[0],meVal[0]);
+            if(matchRes.length === 0) {                
+                // pass
+                console.log("무승부");
+            } else {
+                if (matchRes[0] === "com") {
+                    com.point -= matchRes[1];
+            } else if (matchRes[0] === "me") {
+                    me.point -= matchRes[1];
+            }
+            curLog += "com : " + comVal[1];
+            curLog += ", me : " + meVal[1] + " ";
+            curLog += matchRes[0] + "(이)가 패하여 " + matchRes[1] + "점이 감점 ";
+            curLog += "현재 포인트는 컴 : " + com.point + " 사용자 : " + me.point;
+            console.log(curLog)
+            myenv.matchLog += curLog;
+            }
+            // if (com.point <= 0 || me.point <= 0) {
+            //     // 게임종료
+            // }
+        }  
+    </script>
+</body>
+</html>

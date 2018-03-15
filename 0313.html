@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+    <button type="button" onclick="myPlayGame('lt')">클릭</button>
+<body>
+
+    <script>
+        function myPlayGame(para) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var obj = JSON.parse(this.responseText);
+                    if (obj.myDir === 'LT') {
+                        
+                    } else if (obj.myDir === 'RT') {
+
+                    }
+                }
+
+            }
+            xhttp.open("GET", "{% url 'ajaxgameplay' %}?dir=" + para, true);
+            xhttp.send();
+        }
+    </script>
+
+
+</body>
+
+</html>
